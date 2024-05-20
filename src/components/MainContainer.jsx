@@ -14,7 +14,7 @@ const MainContainer = () => {
   }, []);
   return (
     <section class="mainContainer">
-      <AddTodoBox />
+      <AddTodoBox Todos={Todos} setTodos={setTodos} />
       <TodoCounter />
       <TodoContainer Todos={Todos} setTodos={setTodos} />
     </section>

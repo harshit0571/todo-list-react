@@ -28,3 +28,16 @@ export const deleteTodo = (index, todoArray) => {
 export const saveToLocal = (todoArray) => {
   localStorage.setItem("todos", JSON.stringify(todoArray));
 };
+
+export const addTask = (input, todoArray) => {
+  if (input) {
+    const newTodo = {
+      id: todoArray.length + 1,
+      title: input,
+      completed: false,
+    };
+    todoArray.push(newTodo);
+  }
+  saveToLocal(todoArray);
+  return todoArray;
+};
