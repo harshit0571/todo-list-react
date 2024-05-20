@@ -225,6 +225,7 @@ button {
 }
 
 @media screen and (max-width: 550px) {
+
   * {
     font-size: 17px;
   }
@@ -233,6 +234,10 @@ button {
     gap: 10px;
     padding: 15px;
   }
+  .header h1{
+    font-size: 20px;
+  }
+  
   .bottomContainer {
     width: 90%;
   }
@@ -271,5 +276,19 @@ button {
   }
   .clearTodos {
     font-size: 12px;
+  }
+  .addTodoBox button {
+    width: max-content;
+    color: white;
+  
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
   }
 }
