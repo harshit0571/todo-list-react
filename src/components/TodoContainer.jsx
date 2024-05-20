@@ -12,7 +12,7 @@ const TodoContainer = ({ Todos, setTodos }) => {
   };
   const handleClear = () => {
     const updatedTodos = clearTodos(Todos);
-    setTodos([]);
+    setTodos([...updatedTodos]);
   };
   return (
     <div className="bottomContainer">

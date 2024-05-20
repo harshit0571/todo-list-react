@@ -1,8 +1,10 @@
 export const fetchTodos = async () => {
   const savedTodos = localStorage.getItem("todos");
-  if (savedTodos != "undefined" && savedTodos) {
+  console.log(savedTodos);
+  if (savedTodos != null) {
     return JSON.parse(savedTodos);
   } else {
+    console.log("d");
     const response = await fetch(
       " https://jsonplaceholder.typicode.com/todos?_limit=10"
     );
@@ -43,6 +45,7 @@ export const addTask = (input, todoArray) => {
 };
 
 export const clearTodos = (todoArray) => {
-  localStorage.removeItem("todos");
-  return [];
+  todoArray = [];
+  saveToLocal(todoArray);
+  return todoArray;
 };
