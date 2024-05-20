@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Todo List React App
+
+![Screenshot 2024-05-20 at 16 25 08](https://github.com/harshit0571/todo-list-react/assets/62325935/e560928d-acd3-4341-896e-cd1e08a06257)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
