@@ -8,7 +8,7 @@ const MainContainer = () => {
   const [Todos, setTodos] = useState([]);
   useEffect(() => {
     const renderLists = async () => {
-        setTodos(await fetchTodos());
+      setTodos(await fetchTodos());
     };
     renderLists();
   }, []);

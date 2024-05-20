@@ -2,6 +2,14 @@ import React from "react";
 import { toggleTodo, deleteTodo } from "../utils";
 
 const TodoContainer = ({ Todos, setTodos }) => {
+  const handleToggleTodo = (index) => {
+    const updatedTodos = toggleTodo(index, Todos);
+    setTodos([...updatedTodos]);
+  };
+  const handleDeleteTodo = (index) => {
+    const updatedTodos = deleteTodo(index, Todos);
+    setTodos([...updatedTodos]);
+  };
   return (
     <div className="bottomContainer">
       <h1>Tasks Lists</h1>
@@ -16,12 +24,14 @@ const TodoContainer = ({ Todos, setTodos }) => {
               <input
                 type="checkbox"
                 checked={data.completed}
-                onChange={() => toggleTodo(index, Todos)}
+                onChange={() => {
+                  handleToggleTodo(index);
+                }}
               />
               <i
                 className="fa fa-trash"
                 aria-hidden="true"
-                onClick={() => deleteTodo(index, Todos)}
+                onClick={() => handleDeleteTodo(index)}
               ></i>
             </div>
           </div>
