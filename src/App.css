@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 * {
@@ -152,6 +151,7 @@ button {
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .todoCounter div {
   padding: 20px;
   width: max-content;
@@ -162,6 +162,25 @@ button {
   background-color: white;
   transition: 0.5s;
 }
+.clearTodos {
+  border-radius: 10px;
+  height: max-content;
+  padding: 10px 5px 10px 5px;
+  border: 2px solid white;
+  background-color: red;
+  color: white;
+  transition: 0.5s;
+  font-weight: bold;
+  max-width: 100px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.todoHeaders {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .totalTodos:hover {
   background-color: rgb(160, 211, 255);
   cursor: pointer;
@@ -249,5 +268,8 @@ button {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 1rem;
+  }
+  .clearTodos {
+    font-size: 12px;
   }
 }

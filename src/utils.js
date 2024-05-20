@@ -1,6 +1,6 @@
 export const fetchTodos = async () => {
   const savedTodos = localStorage.getItem("todos");
-  if (savedTodos != "undefined") {
+  if (savedTodos != "undefined" && savedTodos) {
     return JSON.parse(savedTodos);
   } else {
     const response = await fetch(
@@ -40,4 +40,9 @@ export const addTask = (input, todoArray) => {
   }
   saveToLocal(todoArray);
   return todoArray;
+};
+
+export const clearTodos = (todoArray) => {
+  localStorage.removeItem("todos");
+  return [];
 };

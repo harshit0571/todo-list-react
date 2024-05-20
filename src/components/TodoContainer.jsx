@@ -1,5 +1,5 @@
 import React from "react";
-import { toggleTodo, deleteTodo } from "../utils";
+import { toggleTodo, deleteTodo, clearTodos } from "../utils";
 
 const TodoContainer = ({ Todos, setTodos }) => {
   const handleToggleTodo = (index) => {
@@ -10,9 +10,15 @@ const TodoContainer = ({ Todos, setTodos }) => {
     const updatedTodos = deleteTodo(index, Todos);
     setTodos([...updatedTodos]);
   };
+  const handleClear = () => {
+    const updatedTodos = clearTodos(Todos);
+    setTodos([]);
+  };
   return (
     <div className="bottomContainer">
-      <h1>Tasks Lists</h1>
+      <div className="todoHeaders">
+        <h1>Tasks Lists</h1>
+      </div>
       <div className="todoContainer">
         {Todos.map((data, index) => (
           <div className="todo" key={index}>
@@ -36,6 +42,16 @@ const TodoContainer = ({ Todos, setTodos }) => {
             </div>
           </div>
         ))}
+        {Todos.length > 0 && (
+          <button
+            class="clearTodos"
+            onClick={() => {
+              handleClear();
+            }}
+          >
+            Clear All
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const TodoCounter = () => {
+const TodoCounter = ({ Todos, setTodos }) => {
+  let completed =
+    Todos.length > 0 ? Todos.filter((todo) => todo.completed).length : 0;
+  let total = Todos.length;
+  let inCompleted = total - completed;
   return (
     <div class="todoCounter">
-      <div class="totalTodos">Total Tasks: 10</div>
-      <div class="completedTodos">Completed Tasks: 3</div>
-      <div class="incompletedTodos">Incomplete Tasks: 7</div>
+      <div class="totalTodos">Total Tasks: {total}</div>
+      <div class="completedTodos">Completed Tasks: {completed}</div>
+      <div class="incompletedTodos">Incomplete Tasks: {inCompleted}</div>
     </div>
-  )
-}
+  );
+};
 
-export default TodoCounter
+export default TodoCounter;
