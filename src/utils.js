@@ -9,7 +9,7 @@ export const fetchTodos = async () => {
     );
     const data = await response.json();
     saveToLocal(data);
-    return data;
+    return [...data];
   }
 };
 
@@ -27,6 +27,7 @@ export const deleteTodo = (index, todoArray) => {
 };
 
 export const saveToLocal = (todoArray) => {
+  console.log(todoArray, "local");
   localStorage.setItem("todos", JSON.stringify(todoArray));
 };
 
@@ -46,5 +47,6 @@ export const addTask = (input, todoArray) => {
 export const clearTodos = (todoArray) => {
   todoArray = [];
   saveToLocal(todoArray);
+  console.log("clear");
   return todoArray;
 };
