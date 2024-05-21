@@ -225,7 +225,6 @@ button {
 }
 
 @media screen and (max-width: 550px) {
-
   * {
     font-size: 17px;
   }
@@ -234,10 +233,10 @@ button {
     gap: 10px;
     padding: 15px;
   }
-  .header h1{
+  .header h1 {
     font-size: 20px;
   }
-  
+
   .bottomContainer {
     width: 90%;
   }
@@ -280,7 +279,7 @@ button {
   .addTodoBox button {
     width: max-content;
     color: white;
-  
+
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
