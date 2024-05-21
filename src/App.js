@@ -1,13 +1,15 @@
 import "./App.css";
 import Header from "./components/Header";
 import MainContainer from "./components/MainContainer";
+import TodoProvider from "./TodoContent";
 function App() {
-  
   return (
-    <main>
-      <Header />
-      <MainContainer />
-    </main>
+    <TodoProvider>
+      <main>
+        <Header />
+        <MainContainer />
+      </main>
+    </TodoProvider>
   );
 }
 

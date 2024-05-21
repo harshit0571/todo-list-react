@@ -1,5 +1,11 @@
-import React from "react";
-import { addTask, clearTodos, deleteTodo, toggleTodo } from "./utils";
+import React, { useEffect, useReducer } from "react";
+import {
+  addTask,
+  clearTodos,
+  deleteTodo,
+  fetchTodos,
+  toggleTodo,
+} from "./utils";
 
 export const ACTIONS = {
   SET_TODOS: "SET_TODOS",
@@ -21,11 +27,23 @@ const todoReducer = (todos, action) => {
       return toggleTodo(action.payload, todos);
     case ACTIONS.CLEAR_TODOS:
       return clearTodos(todos);
+    default:
+      return todos;
   }
 };
 
-const TodoProvider = () => {
-  return <div>TodoContent</div>;
+const TodoProvider = ({ children }) => {
+  const [todos, dispatch] = useReducer(todoReducer, []);
+  useEffect(() => {
+    const renderLists = async () => {
+      const list = await fetchTodos();
+      dispatch({ type: ACTIONS.SET_TODOS, payload: list });
+    };
+    renderLists();
+  }, []);
+  console.log(todos);
+
+  return <div>{children}</div>;
 };
 
 export default TodoProvider;
