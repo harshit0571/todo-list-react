@@ -6,12 +6,12 @@ import { fetchTodos } from "../utils";
 
 const MainContainer = () => {
   const [Todos, setTodos] = useState([]);
-  useEffect(() => {
-    const renderLists = async () => {
-      setTodos(await fetchTodos());
-    };
-    renderLists();
-  }, []);
+  // useEffect(() => {
+  //   const renderLists = async () => {
+  //     setTodos(await fetchTodos());
+  //   };
+  //   renderLists();
+  // }, []);
   return (
     <section class="mainContainer">
       <AddTodoBox Todos={Todos} setTodos={setTodos} />
