@@ -4,9 +4,8 @@ export const fetchTodos = async () => {
   if (savedTodos != null) {
     return JSON.parse(savedTodos);
   } else {
-    console.log("d");
     const response = await fetch(
-      " https://jsonplaceholder.typicode.com/todos?_limit=10"
+      "https://jsonplaceholder.typicode.com/todos?_limit=10"
     );
     const data = await response.json();
     saveToLocal(data);
