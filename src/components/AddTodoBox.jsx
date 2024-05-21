@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import { addTask } from "../utils";
+import React, { useContext, useState } from "react";
+import { ACTIONS, TodoContext } from "../TodoContext";
 
-const AddTodoBox = ({ Todos, setTodos }) => {
+const AddTodoBox = () => {
   const [inputVal, setInputVal] = useState("");
-  const handleAddTask = () => {
-    const todoArray = addTask(inputVal.trim(), Todos);
-    setTodos([...todoArray]);
-    setInputVal("");
-  };
+  const { dispatch } = useContext(TodoContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleAddTask();
+    if (inputVal.trim() !== "") {
+      console.log("Dispatching ADD_TASK with payload:", inputVal);
+      dispatch({ type: ACTIONS.ADD_TASK, payload: inputVal });
+      setInputVal(""); // Clear the input field after adding the task
+    }
   };
+
   return (
     <form onSubmit={handleSubmit} className="addTodoBox">
       <input

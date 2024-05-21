@@ -1,6 +1,5 @@
 export const fetchTodos = async () => {
   const savedTodos = localStorage.getItem("todos");
-  console.log(savedTodos, "fetch");
   if (savedTodos != null) {
     return JSON.parse(savedTodos);
   } else {
@@ -15,38 +14,37 @@ export const fetchTodos = async () => {
 
 export const toggleTodo = (index, todoArray) => {
   todoArray[index].completed = !todoArray[index].completed;
-  console.log(todoArray[index]);
   saveToLocal(todoArray);
-  return todoArray;
+  return [...todoArray];
 };
 
 export const deleteTodo = (index, todoArray) => {
   todoArray.splice(index, 1);
   saveToLocal(todoArray);
-  return todoArray;
+  return [...todoArray];
 };
 
 export const saveToLocal = (todoArray) => {
-  console.log(todoArray, "local");
   localStorage.setItem("todos", JSON.stringify(todoArray));
 };
 
 export const addTask = (input, todoArray) => {
+  let arr = [];
   if (input) {
     const newTodo = {
       id: todoArray.length + 1,
       title: input,
       completed: false,
     };
+    arr = [...todoArray, newTodo];
     todoArray.push(newTodo);
   }
-  saveToLocal(todoArray);
-  return todoArray;
+  saveToLocal(arr);
+  return arr;
 };
 
 export const clearTodos = (todoArray) => {
   todoArray = [];
   saveToLocal(todoArray);
-  console.log("clear");
   return todoArray;
 };

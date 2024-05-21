@@ -7,8 +7,8 @@ import { fetchTodos } from "../utils";
 const MainContainer = () => {
   return (
     <section class="mainContainer">
-      {/* <AddTodoBox  />
-      <TodoCounter  /> */}
+      <AddTodoBox  />
+      {/* <TodoCounter  /> */}
       <TodoContainer  />
     </section>
   );

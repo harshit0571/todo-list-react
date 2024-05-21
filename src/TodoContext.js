@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useReducer, useState } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import {
-  addTask,
   clearTodos,
   deleteTodo,
   fetchTodos,
   saveToLocal,
   toggleTodo,
+  addTask,
 } from "./utils";
 
 export const ACTIONS = {
@@ -21,35 +21,59 @@ const todoReducer = (todos, action) => {
     case ACTIONS.SET_TODOS:
       return action.payload;
     case ACTIONS.ADD_TASK:
-      return addTask(action.payload, todos);
+      console.log("Calling addTask from reducer with payload:", action.payload);
+      const newTodo = {
+        id: todos.length + 1,
+        title: action.payload,
+        completed: false,
+      };
+      const addedTodos = [...todos, newTodo];
+      saveToLocal(addedTodos);
+      return addedTodos;
     case ACTIONS.REMOVE_TASK:
-      return deleteTodo(action.payload, todos);
+      console.log(
+        "Calling deleteTodo from reducer with index:",
+        action.payload
+      );
+      const removedTodos = todos.filter(
+        (todo, index) => index !== action.payload
+      );
+      saveToLocal(removedTodos);
+      return removedTodos;
     case ACTIONS.TOGGLE_TASK:
-      return toggleTodo(action.payload, todos);
+      console.log(
+        "Calling toggleTodo from reducer with index:",
+        action.payload
+      );
+      const toggledTodos = todos.map((todo, index) =>
+        index === action.payload
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      );
+      saveToLocal(toggledTodos);
+      return toggledTodos;
     case ACTIONS.CLEAR_TODOS:
-      return clearTodos(todos);
+      console.log("Calling clearTodos from reducer");
+      const clearedTodos = [];
+      saveToLocal(clearedTodos);
+      return clearedTodos;
     default:
       return todos;
   }
 };
+
 export const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
-  const [todoArray, setTodoArray] = useState([]);
-  const [todos, dispatch] = useReducer(
-    todoReducer,
-    JSON.parse(localStorage.getItem("todos")) || []
-  );
+  const [todos, dispatch] = useReducer(todoReducer, []);
+
   useEffect(() => {
     const renderLists = async () => {
       const list = await fetchTodos();
-      console.log(list);
       dispatch({ type: ACTIONS.SET_TODOS, payload: list });
     };
     renderLists();
   }, []);
-
-  // console.log(todos, "reducer");
 
   return (
     <TodoContext.Provider value={{ todos, dispatch }}>

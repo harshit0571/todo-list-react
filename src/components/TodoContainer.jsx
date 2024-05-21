@@ -1,23 +1,8 @@
 import React, { useContext } from "react";
-import { toggleTodo, deleteTodo, clearTodos } from "../utils";
 import { TodoContext } from "../TodoContext";
 import { ACTIONS } from "../TodoContext";
 
-const TodoContainer = ({ Todos, setTodos }) => {
-  const handleToggleTodo = (index) => {
-    // const updatedTodos = toggleTodo(index, Todos);
-    // setTodos([...updatedTodos]);
-    // dispatch()
-  };
-  const handleDeleteTodo = (index) => {
-    const updatedTodos = deleteTodo(index, Todos);
-    setTodos([...updatedTodos]);
-  };
-  const handleClear = () => {
-    const updatedTodos = clearTodos(Todos);
-    setTodos([...updatedTodos]);
-  };
-
+const TodoContainer = () => {
   const { todos, dispatch } = useContext(TodoContext);
   return (
     <div className="bottomContainer">
@@ -53,7 +38,7 @@ const TodoContainer = ({ Todos, setTodos }) => {
           <button
             class="clearTodos"
             onClick={() => {
-              dispatch({ action: ACTIONS.CLEAR_TODOS });
+              dispatch({ type: ACTIONS.CLEAR_TODOS });
             }}
           >
             Clear All
