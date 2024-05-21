@@ -1,6 +1,6 @@
 export const fetchTodos = async () => {
   const savedTodos = localStorage.getItem("todos");
-  console.log(savedTodos);
+  console.log(savedTodos, "fetch");
   if (savedTodos != null) {
     return JSON.parse(savedTodos);
   } else {
@@ -9,7 +9,7 @@ export const fetchTodos = async () => {
     );
     const data = await response.json();
     saveToLocal(data);
-    return [...data];
+    return data;
   }
 };
 

@@ -5,8 +5,9 @@ import { ACTIONS } from "../TodoContext";
 
 const TodoContainer = ({ Todos, setTodos }) => {
   const handleToggleTodo = (index) => {
-    const updatedTodos = toggleTodo(index, Todos);
-    setTodos([...updatedTodos]);
+    // const updatedTodos = toggleTodo(index, Todos);
+    // setTodos([...updatedTodos]);
+    // dispatch()
   };
   const handleDeleteTodo = (index) => {
     const updatedTodos = deleteTodo(index, Todos);
@@ -17,7 +18,7 @@ const TodoContainer = ({ Todos, setTodos }) => {
     setTodos([...updatedTodos]);
   };
 
-  const { todos, dispatch, todoArray } = useContext(TodoContext);
+  const { todos, dispatch } = useContext(TodoContext);
   return (
     <div className="bottomContainer">
       <div className="todoHeaders">
@@ -35,16 +36,15 @@ const TodoContainer = ({ Todos, setTodos }) => {
                 type="checkbox"
                 checked={data.completed}
                 onChange={() => {
-                  handleToggleTodo(index);
+                  dispatch({ type: ACTIONS.TOGGLE_TASK, payload: index });
                 }}
               />
               <i
                 className="fa fa-trash"
                 aria-hidden="true"
-                onClick={dispatch({
-                  type: ACTIONS.REMOVE_TASK,
-                  payload: index,
-                })}
+                onClick={() => {
+                  dispatch({ type: ACTIONS.REMOVE_TASK, payload: index });
+                }}
               ></i>
             </div>
           </div>
@@ -53,7 +53,7 @@ const TodoContainer = ({ Todos, setTodos }) => {
           <button
             class="clearTodos"
             onClick={() => {
-              handleClear();
+              dispatch({ action: ACTIONS.CLEAR_TODOS });
             }}
           >
             Clear All

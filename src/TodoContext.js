@@ -7,7 +7,6 @@ import {
   saveToLocal,
   toggleTodo,
 } from "./utils";
-import { type } from "@testing-library/user-event/dist/type";
 
 export const ACTIONS = {
   SET_TODOS: "SET_TODOS",
@@ -37,7 +36,10 @@ export const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
   const [todoArray, setTodoArray] = useState([]);
-  const [todos, dispatch] = useReducer(todoReducer, []);
+  const [todos, dispatch] = useReducer(
+    todoReducer,
+    JSON.parse(localStorage.getItem("todos")) || []
+  );
   useEffect(() => {
     const renderLists = async () => {
       const list = await fetchTodos();
