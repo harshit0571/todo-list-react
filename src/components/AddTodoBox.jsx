@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import {  TodoContext } from "../TodoContext";
-import { ACTIONS } from "../TodoReducer";
+import { TodoContext } from "../context/TodoContext";
+import { ACTIONS } from "../reducers/TodoReducer";
 
 const AddTodoBox = () => {
   const [inputVal, setInputVal] = useState("");

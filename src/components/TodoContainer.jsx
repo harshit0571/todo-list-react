@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { TodoContext } from "../TodoContext";
-import { ACTIONS } from "../TodoReducer";
+import { TodoContext } from "../context/TodoContext";
+import { ACTIONS } from "../reducers/TodoReducer";
 
 const TodoContainer = () => {
   const { todos, dispatch } = useContext(TodoContext);

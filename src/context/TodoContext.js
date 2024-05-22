@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
-import { fetchTodos, saveToLocal } from "./utils";
-import { ACTIONS, todoReducer } from "./TodoReducer";
+import { fetchTodos } from "../utils";
+import { ACTIONS, todoReducer } from "../reducers/TodoReducer";
 
 export const TodoContext = createContext();
 
