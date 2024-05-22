@@ -11,40 +11,41 @@ export const fetchTodos = async () => {
     return data;
   }
 };
-
-export const toggleTodo = (index, todoArray) => {
-  todoArray[index].completed = !todoArray[index].completed;
-  saveToLocal(todoArray);
-  return [...todoArray];
-};
-
-export const deleteTodo = (index, todoArray) => {
-  todoArray.splice(index, 1);
-  saveToLocal(todoArray);
-  return [...todoArray];
-};
-
 export const saveToLocal = (todoArray) => {
   localStorage.setItem("todos", JSON.stringify(todoArray));
 };
 
-export const addTask = (input, todoArray) => {
-  let arr = [];
-  if (input) {
-    const newTodo = {
-      id: todoArray.length + 1,
-      title: input,
-      completed: false,
-    };
-    arr = [...todoArray, newTodo];
-    todoArray.push(newTodo);
-  }
-  saveToLocal(arr);
-  return arr;
-};
+// export const addTask = (input, todoArray) => {
+//   let arr = [];
+//   if (input) {
+//     const newTodo = {
+//       id: todoArray.length + 1,
+//       title: input,
+//       completed: false,
+//     };
+//     arr = [...todoArray, newTodo];
+//     todoArray.push(newTodo);
+//   }
+//   saveToLocal(arr);
+//   return arr;
+// };
 
-export const clearTodos = (todoArray) => {
-  todoArray = [];
-  saveToLocal(todoArray);
-  return todoArray;
-};
+// export const clearTodos = (todoArray) => {
+//   todoArray = [];
+//   saveToLocal(todoArray);
+//   return todoArray;
+// };
+
+
+
+// export const toggleTodo = (index, todoArray) => {
+//   todoArray[index].completed = !todoArray[index].completed;
+//   saveToLocal(todoArray);
+//   return [...todoArray];
+// };
+
+// export const deleteTodo = (index, todoArray) => {
+//   todoArray.splice(index, 1);
+//   saveToLocal(todoArray);
+//   return [...todoArray];
+// };
