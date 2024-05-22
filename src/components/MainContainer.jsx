@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AddTodoBox from "./AddTodoBox";
 import TodoCounter from "./TodoCounter";
 import TodoContainer from "./TodoContainer";
-import { fetchTodos } from "../utils";
 
 const MainContainer = () => {
   return (
