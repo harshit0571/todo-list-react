@@ -1,12 +1,5 @@
 import React, { createContext, useEffect, useReducer } from "react";
-import {
-  clearTodos,
-  deleteTodo,
-  fetchTodos,
-  saveToLocal,
-  toggleTodo,
-  addTask,
-} from "./utils";
+import { fetchTodos, saveToLocal } from "./utils";
 
 export const ACTIONS = {
   SET_TODOS: "SET_TODOS",
@@ -16,51 +9,63 @@ export const ACTIONS = {
   CLEAR_TODOS: "CLEAR_TODOS",
 };
 
+const setTodos = (payload) => {
+  return payload;
+};
+
+const addTask = (todos, payload) => {
+  console.log("Calling addTask from reducer with payload:", payload);
+  const newTodo = {
+    id: todos.length + 1,
+    title: payload,
+    completed: false,
+  };
+  const addedTodos = [...todos, newTodo];
+  saveToLocal(addedTodos);
+  return addedTodos;
+};
+
+const removeTask = (todos, payload) => {
+  console.log("Calling deleteTodo from reducer with index:", payload);
+  const removedTodos = todos.filter((todo, index) => index !== payload);
+  saveToLocal(removedTodos);
+  return removedTodos;
+};
+
+const toggleTask = (todos, payload) => {
+  console.log("Calling toggleTodo from reducer with index:", payload);
+  const toggledTodos = todos.map((todo, index) =>
+    index === payload ? { ...todo, completed: !todo.completed } : todo
+  );
+  saveToLocal(toggledTodos);
+  return toggledTodos;
+};
+
+const clearTodos = () => {
+  console.log("Calling clearTodos from reducer");
+  const clearedTodos = [];
+  saveToLocal(clearedTodos);
+  return clearedTodos;
+};
+
 const todoReducer = (todos, action) => {
   switch (action.type) {
     case ACTIONS.SET_TODOS:
-      return action.payload;
+      return setTodos(action.payload);
     case ACTIONS.ADD_TASK:
-      console.log("Calling addTask from reducer with payload:", action.payload);
-      const newTodo = {
-        id: todos.length + 1,
-        title: action.payload,
-        completed: false,
-      };
-      const addedTodos = [...todos, newTodo];
-      saveToLocal(addedTodos);
-      return addedTodos;
+      return addTask(todos, action.payload);
     case ACTIONS.REMOVE_TASK:
-      console.log(
-        "Calling deleteTodo from reducer with index:",
-        action.payload
-      );
-      const removedTodos = todos.filter(
-        (todo, index) => index !== action.payload
-      );
-      saveToLocal(removedTodos);
-      return removedTodos;
+      return removeTask(todos, action.payload);
     case ACTIONS.TOGGLE_TASK:
-      console.log(
-        "Calling toggleTodo from reducer with index:",
-        action.payload
-      );
-      const toggledTodos = todos.map((todo, index) =>
-        index === action.payload
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      );
-      saveToLocal(toggledTodos);
-      return toggledTodos;
+      return toggleTask(todos, action.payload);
     case ACTIONS.CLEAR_TODOS:
-      console.log("Calling clearTodos from reducer");
-      const clearedTodos = [];
-      saveToLocal(clearedTodos);
-      return clearedTodos;
+      return clearTodos();
     default:
       return todos;
   }
 };
+
+
 
 export const TodoContext = createContext();
 
