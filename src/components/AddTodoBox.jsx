@@ -10,7 +10,7 @@ const AddTodoBox = () => {
     if (inputVal.trim() !== "") {
       console.log("Dispatching ADD_TASK with payload:", inputVal);
       dispatch({ type: ACTIONS.ADD_TASK, payload: inputVal });
-      setInputVal(""); // Clear the input field after adding the task
+      setInputVal("");
     }
   };
 

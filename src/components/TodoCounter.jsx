@@ -11,9 +11,9 @@ const TodoCounter = () => {
 
   return (
     <div class="todoCounter">
-      <div class="totaltodos">Total Tasks: {total}</div>
-      <div class="completedtodos">Completed Tasks: {completed}</div>
-      <div class="incompletedtodos">Incomplete Tasks: {inCompleted}</div>
+      <div class="totalTodos">Total Tasks: {total}</div>
+      <div class="completedTodos">Completed Tasks: {completed}</div>
+      <div class="incompletedTodos">Incomplete Tasks: {inCompleted}</div>
     </div>
   );
 };
